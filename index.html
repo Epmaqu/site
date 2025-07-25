@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>CyberShop</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap');
+:root {
+  --main: #388eff;
+  --main2: #4ebdff;
+  --accent: #e9f4ff;
+  --bg: #eaf4ff;
+  --bg2: #e1eeff;
+  --deep: #174477;
+  --card: #fff;
+  --shadow: 0 10px 36px -10px #2a66e722, 0 4px 20px -6px #3ba3ff0a;
+  --chip: #e6f2ff;
+  --gradient: linear-gradient(105deg, #c2e4ff 0%, #d6eaff 60%, #a1d6ff 100%);
+  --radius: 2rem;
+  --radius-s: 1rem;
+}
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  color: #11375b;
+  background: var(--bg);
+  min-height: 100vh;
+  
+  font-size: 16px;
+  
+  background-color: #eaf4ff;
+}
+
+body {
+  letter-spacing: 0.01em;
+  background-color: #eaf4ff;
+}
+
+header {
+  background: #fff6;
+  box-shadow: 0 1px 32px -12px #4ebdff22;
+  position: sticky;
+  top: 0; left: 0; right: 0;
+  
+  z-index: 100;
+  backdrop-filter: blur(5px);
+  border-bottom: 1px solid #eaf4ff;
+}
+
+.header-inner {
+  margin: 0 auto;
+  max-width: 1260px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 4vw 0 4vw;
+  gap: 24px;
+  
+  border: none;
+}
+
+.logo {
+  font-size: 2.1rem;
+  font-weight: bold;
+  
+  color: var(--main);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+  text-shadow: 0 4px 20px #3ba3ff22;
+  letter-spacing: 1.4px;
+  border: none;
+}
+
+.logo span {
+  font-size: 1.55rem;
+  color: var(--main2);
+  text-shadow: 0 0 10px #c2e4ffcc;
+  margin-left: 1px;
+}
+
+nav {
+  display: flex;
+  gap: 30px;
+  
+  flex-wrap: wrap;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--main2);
+  background: var(--chip);
+  border-radius: 18px;
+  padding: 8px 22px 8px 22px;
+  font-weight: 600;
+  font-size: 1.05rem;
+  transition: 0.15s;
+  border: 1px solid transparent;
+}
+
+nav a:hover,
+.catalogs .chip.active {
+  background: var(--main2);
+  color: #fff;
+  box-shadow: 0 2px 18px -3px #3ba3ff40;
+  
+}
+
+nav a:active {
+  border-color: #c0e4ff;
+}
+
+.banner {
+  max-width: 1150px;
+  margin: 40px auto 0 auto;
+  background: var(--gradient);
+  border-radius: var(--radius);
+  box-shadow: 0 12px 56px -18px #3ba3ff2a, 0 6px 32px -12px #fff;
+  display: flex;
+  
+  align-items: center;
+  gap: 38px;
+  padding: 42px 48px;
+  position: relative;
+  overflow: hidden;
+  animation: fadeIn .7s;
+  min-height: 230px;
+}
+
+.banner-img {
+  width: 140px;
+  min-width: 80px;
+  filter: drop-shadow(0 0 32px #55c2ff80);
+  z-index: 2;
+  border-radius: 1.1rem;
+  border: none;
+  
+}
+
+.banner-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.banner-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--main);
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 24px #3ba3ff13;
+  
+}
+
+.banner-desc {
+  font-size: 1.17rem;
+  color: #237;
+  margin-bottom: 16px;
+}
+
+
+.banner-btn {
+  background: var(--main2);
+  color: #fff;
+  font-weight: bold;
+  padding: 12px 40px;
+  border: none;
+  border-radius: 23px;
+  box-shadow: 0 6px 24px -5px #3ba3ff80;
+  font-size: 1.18rem;
+  cursor: pointer;
+  margin-top: 9px;
+  transition: background 0.14s, color 0.14s;
+  outline: none;
+}
+
+.banner-btn:hover {
+  background: var(--main);
+  
+}
+
+.banner-btn:active {
+  border: 2px solid #c2e4ff;
+}
+
+.catalogs {
+  max-width: 1150px;
+  margin: 36px auto 0 auto;
+  display: flex;
+  gap: 13px;
+  padding: 0 7vw;
+  flex-wrap: wrap;
+  align-items: center;
+  animation: fadeIn .8s;
+  border: 0px solid #fff;
+}
+
+.catalogs .chip {
+  padding: 7px 20px;
+  background: #e6f2ff;
+  color: var(--main2);
+  border-radius: 15px;
+  font-weight: 600;
+  font-size: 1.05rem;
+  cursor: pointer;
+  user-select: none;
+  border: 0;
+  margin-bottom: 5px;
+  outline: none;
+  transition: 0.16s;
+}
+
+.catalogs .chip:hover,
+.catalogs .chip.active {
+  background: #4ebdff;
+  color: #fff;
+  box-shadow: 0 2px 18px -3px #3ba3ff30;
+}
+
+.catalogs .chip svg {
+  vertical-align: middle;
+  margin-right: 7px;
+  margin-bottom: 2px;
+}
+
+main {
+  min-height: 62vh;
+  margin-top: 18px;
+  margin-bottom: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(295px, 1fr));
+  gap: 36px;
+  max-width: 1150px;
+  width: 98vw;
+  padding: 0 2vw 48px 2vw;
+  position: relative;
+  border: none;
+}
+
+.product-card {
+  background: #fff;
+  border-radius: 2rem;
+  box-shadow: var(--shadow);
+  padding: 25px 21px 23px 21px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 360px;
+  border: 2px solid #e1eaff;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(38px) scale(0.97) rotate(var(--angle, 0deg));
+  animation: cardShow 0.8s cubic-bezier(.63,.22,.33,1.3) forwards;
+  animation-delay: var(--delay, 0s);
+  z-index: 1;
+  transition: box-shadow 0.19s, border-color 0.15s;
+}
+
+.product-card.show {
+  opacity: 1;
+}
+
+.product-card:hover {
+  box-shadow: 0 14px 46px -10px #388eff42, 0 8px 32px -6px #2379ff20;
+  border-color: var(--main2);
+  z-index: 5;
+}
+
+.product-card img {
+  width: 98px; height: 98px;
+  border-radius: 1.2rem;
+  background: #e8f7ff;
+  object-fit: cover;
+  margin-bottom: 18px;
+  margin-top: 3px;
+  box-shadow: 0 2px 18px -4px #388eff33;
+  align-self: center;
+  border: none;
+}
+
+.product-title {
+  font-size: 1.12rem;
+  margin-bottom: 6px;
+  color: var(--main);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.product-desc {
+  color: #3b6c91;
+  font-size: 0.98rem;
+  min-height: 56px;
+  margin-bottom: 6px;
+}
+
+.product-badges {
+  display: flex;
+  gap: 7px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  background: #4ebdff;
+  color: #fff;
+  font-size: 0.79rem;
+  border-radius: 11px;
+  padding: 2px 12px 3px 12px;
+  letter-spacing: 1px;
+  margin-right: 2px;
+  font-weight: 600;
+  user-select: none;
+  box-shadow: 0 1px 5px #388eff13;
+}
+
+.badge.sale {
+  background: #ff5e68;
+}
+
+.badge.new {
+  background: #38d5b6;
+}
+
+.product-price {
+  font-size: 1.18rem;
+  font-weight: bold;
+  color: var(--main2);
+  margin-bottom: 13px;
+  letter-spacing: 1.2px;
+}
+
+.product-btn {
+  background: var(--main);
+  color: #fff;
+  font-weight: bold;
+  padding: 8px 27px;
+  border: 0;
+  border-radius: 19px;
+  box-shadow: 0 2px 12px -2px #388eff44;
+  cursor: pointer;
+  font-size: 1.06rem;
+  margin-top: auto;
+  transition: background 0.13s, color 0.17s;
+  position: relative;
+  z-index: 3;
+}
+
+.product-btn:hover {
+  background: var(--main2);
+}
+
+.product-card::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -40px; left: -40px;
+  width: 110px; height: 110px;
+  background: radial-gradient(circle at 55% 50%, #b9e3ff45 75%, transparent 85%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.cart-pop {
+  position: fixed;
+  bottom: 115px;
+  right: 46px;
+  background: #fff;
+  color: var(--main2);
+  border-radius: 1.6rem 1.6rem 1.1rem 1.1rem;
+  box-shadow: 0 12px 40px -14px #388eff60, 0 2px 10px #388eff0a;
+  min-width: 320px;
+  min-height: 120px;
+  padding: 23px 22px 16px 22px;
+  z-index: 999;
+  display: none;
+  animation: cartShow .37s cubic-bezier(.63,.2,.43,1.3);
+}
+
+.cart-pop.show {
+  display: block;
+}
+
+.cart-pop-title {
+  font-size: 1.22rem;
+  font-weight: bold;
+  color: var(--main2);
+  margin-bottom: 10px;
+}
+
+.cart-list {
+  list-style: none;
+  margin: 0; padding: 0;
+  max-height: 140px;
+  overflow-y: auto;
+}
+
+.cart-item {
+  display: flex; align-items: center;
+  gap: 10px; font-size: 0.97rem;
+  margin-bottom: 8px;
+  justify-content: space-between;
+}
+
+.cart-item-title {
+  flex: 1;
+}
+
+.cart-item-qty {
+  color: var(--main);
+  font-weight: bold;
+  margin-left: 8px;
+  margin-right: 6px;
+}
+
+.cart-pop-footer {
+  margin-top: 14px;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 12px;
+}
+
+.cart-pop-btn {
+  background: var(--main2);
+  color: #fff;
+  border: none;
+  border-radius: 1rem;
+  padding: 8px 19px;
+  font-size: 1.04rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 1px 6px #388eff22;
+  transition: background 0.13s;
+}
+
+.cart-pop-btn:hover {
+  background: var(--main);
+}
+
+.cart-pop-close {
+  background: none; border: none; color: #aaa; font-size: 1.4rem; cursor: pointer; float: right; margin-left: 8px;
+  position: absolute; top: 13px; right: 18px;
+  transition: color 0.14s;
+}
+
+.cart-pop-close:hover {
+  color: #ff5e68;
+}
+
+.floating-cart {
+  position: fixed;
+  bottom: 37px; right: 49px;
+  z-index: 103;
+  background: var(--main2);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 64px; height: 64px;
+  font-size: 2.2rem;
+  box-shadow: 0 10px 32px -8px #388eff9e;
+  cursor: pointer;
+  transition: transform 0.12s;
+  display: flex; align-items: center; justify-content: center;
+  animation: floatCart 2s infinite cubic-bezier(.44,.35,.53,.64);
+  outline: none;
+}
+
+.floating-cart:active {
+  transform: scale(0.96);
+}
+
+.floating-cart[data-count]:after {
+  content: attr(data-count);
+  position: absolute;
+  top: 8px; right: 12px;
+  background: #ff5e68;
+  color: #fff;
+  font-size: .98rem;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 23px; height: 23px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 8px #ff5e6833;
+  border: 2px solid #fff;
+  pointer-events: none;
+}
+
+footer {
+  margin-top: 38px;
+  padding-bottom: 26px;
+  padding-top: 48px;
+  background: #e7f3ff;
+  text-align: center;
+  color: #4799dc;
+  font-size: 1rem;
+  border-radius: 38px 38px 0 0/1.2rem 1.2rem 0 0;
+  position: relative;
+}
+
+.subscribe-form {
+  background: #fff;
+  margin: 0 auto 16px auto;
+  max-width: 350px;
+  padding: 19px 16px;
+  border-radius: 2rem 1.2rem 1.7rem 2rem;
+  box-shadow: 0 2px 18px -7px #388eff0d;
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  position: relative;
+  top: 5px;
+  z-index: 2;
+}
+
+.subscribe-form input[type="email"] {
+  flex: 1;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  outline: none;
+  background: #f2f8ff;
+  color: var(--main2);
+  transition: border .18s;
+  margin-bottom: 0;
+}
+
+.subscribe-form button {
+  background: var(--main2);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.01rem;
+  font-weight: bold;
+  padding: 10px 20px;
+  cursor: pointer;
+  box-shadow: 0 2px 12px -2px #388eff33;
+  transition: background 0.14s;
+}
+
+.subscribe-form button:hover {
+  background: var(--main);
+}
+
+@keyframes cardShow {
+  to { opacity: 1; transform: translateY(0) scale(1) rotate(var(--angle, 0deg)); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes floatCart {
+  0%,100% { transform:translateY(0);}
+  50% { transform:translateY(-8px);}
+}
+
+@keyframes cartShow {
+  from { opacity:0; transform: translateY(35px) scale(.97);}
+  to { opacity:1; transform: none;}
+}
+
+body { border: 0; }
+.products-grid { border: 0px; }
+.banner-content { border: 0; }
+.product-card img { border: 0px; }
+.catalogs .chip { border-width: 0; }
+.logo { border-width: 0px; }
+.cart-list { border-width: 0; }
+
+@media (max-width: 900px) {
+  .header-inner, .banner {
+    flex-direction: column;
+    gap: 16px;
+    padding-left: 6vw;
+    padding-right: 6vw;
+  }
+  .products-grid { grid-template-columns: 1fr 1fr;}
+  .catalogs { padding: 0 2vw; }
+}
+
+@media (max-width: 670px) {
+  .header-inner { padding: 22px 2vw 0 2vw; }
+  .banner { max-width: 98vw; padding: 15px 4vw; }
+  .products-grid { grid-template-columns: 1fr;}
+  .catalogs { gap: 7px; }
+  .cart-pop { right: 8vw; min-width: 97vw;}
+  .floating-cart { right: 6vw;}
+  .banner-title { font-size: 1.26rem;}
+  .logo { font-size: 1.2rem;}
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="logo">CyberShop</div>
+      <nav>
+        <a href="#">Каталог</a>
+        <a href="#">Акции</a>
+        <a href="#">Сборка ПК</a>
+        <a href="#">Контакты</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="banner">
+    <img class="banner-img" src="https://imgur.com/cb5kgi5.png" alt="Компьютер">
+    <div class="banner-content">
+      <div class="banner-title">Компьютеры и комплектующие <span style="color:var(--main2);">для любых целей</span></div>
+      <div class="banner-desc">Лучший магазин по продаже компьютеров и комплектующих! <br>Гарантия. Доставка по РФ.</div>
+      <button class="banner-btn" onclick="window.scrollTo({top: document.querySelector('.catalogs').offsetTop-20, behavior: 'smooth'})">
+        Выбрать свой ПК
+      </button>
+    </div>
+  </div>
+
+  <div class="catalogs" id="catalogs">
+    <button class="chip active" data-cat="all">Все</button>
+    <button class="chip" data-cat="gaming">Игровые</button>
+    <button class="chip" data-cat="office">Офисные</button>
+    <button class="chip" data-cat="pro">Профессиональные</button>
+    <button class="chip" data-cat="budget">Бюджетные</button>
+    <button class="chip" data-cat="mini">Мини-ПК</button>
+    <button class="chip" data-cat="accessory">Комплектующие</button>
+  </div>
+
+  <main>
+    <div class="products-grid" id="products"></div>
+  </main>
+
+  <div class="cart-pop" id="cartPop">
+    <button class="cart-pop-close" title="Закрыть" onclick="document.getElementById('cartPop').classList.remove('show')">&times;</button>
+    <div class="cart-pop-title">Ваша корзина</div>
+    <ul class="cart-list" id="cartList"></ul>
+    <div class="cart-pop-footer">
+      <span id="cartTotal">0 ₽</span>
+      <button class="cart-pop-btn" onclick="alert('Спасибо за заказ! (демо)')">Оформить</button>
+    </div>
+  </div>
+
+  <button class="floating-cart" id="floatingCart" title="Корзина">🛒</button>
+  
+  <footer>
+    <p>© 2025 CyberShop | Самые свежие технологии. Доставляем по всей России.</p>
+  </footer>
+  
+  
+  
+  <!-- Все дальше я пропускал через ИИ, т.к. я почти не знал JS  -->
+  <script>
+    const products = [
+      {
+        id: 1,
+        title: "Лайт версия",
+        desc: "Описание",
+        price: 79900,
+        img: "https://imgur.com/cb5kgi5.png",
+        cat: ["gaming"],
+        badges: ["new"]
+      },
+      {
+        id: 2,
+        title: "Бюджет",
+        desc: "Описание",
+        price: 36900,
+        img: "https://imgur.com/4xQqth3.png",
+        cat: ["office","mini"],
+        badges: []
+      },
+      {
+        id: 3,
+        title: "Для игр",
+        desc: "Описание",
+        price: 239000,
+        img: "https://imgur.com/LKQ07mi.png",
+        cat: ["pro","gaming"],
+        badges: ["sale"]
+      },
+      {
+        id: 4,
+        title: "Для игр",
+        desc: "Описание",
+        price: 64900,
+        img: "https://imgur.com/Tpv5GZr.png",
+        cat: ["gaming","budget"],
+        badges: []
+      },
+      {
+        id: 5,
+        title: "Для стримеров",
+        desc: "Описание",
+        price: 109500,
+        img: "https://imgur.com/2yP0VpK.png",
+        cat: ["pro","gaming"],
+        badges: ["new"]
+      },
+      {
+        id: 6,
+        title: "Ультра бюджет",
+        desc: "Описание",
+        price: 21900,
+        img: "https://imgur.com/KhLWQ3a.png",
+        cat: ["budget","office"],
+        badges: []
+      },
+      {
+        id: 7,
+        title: "Дешевый",
+        desc: "Описание",
+        price: 29900,
+        img: "https://imgur.com/B7hXEs6.png",
+        cat: ["mini","office"],
+        badges: []
+      },
+      {
+        id: 8,
+        title: "Дешевый",
+        desc: "Описание",
+        price: 39900,
+        img: "https://imgur.com/vGLo2fF.png",
+        cat: ["accessory","gaming"],
+        badges: []
+      },
+      {
+        id: 9,
+        title: "Kingston Fury 32ГБ DDR5",
+        desc: "Описание",
+        price: 14600,
+        img: "https://imgur.com/ptw10Az.png",
+        cat: ["accessory"],
+        badges: []
+      }
+    ];
+    const catList = {
+      all: "Все",
+      gaming: "Игровые",
+      office: "Офисные",
+      pro: "Профессиональные",
+      budget: "Бюджетные",
+      mini: "Мини-ПК",
+      accessory: "Комплектующие"
+    };
+    function renderProducts(filterCat = "all") {
+      const grid = document.getElementById('products');
+      grid.innerHTML = "";
+      let filtered = products.filter(p => filterCat == "all" || p.cat.includes(filterCat));
+      if (!filtered.length) grid.innerHTML = `<div style="color:#86b0d6;padding:34px;font-size:1.2rem;">Товаров нет.</div>`;
+      filtered.forEach((p, idx) => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        const angles = ['-2deg', '1.7deg', '-0.7deg', '2.3deg', '-1.2deg', '1deg'];
+        card.style.setProperty('--angle', angles[idx%angles.length]);
+        card.style.setProperty('--delay', `${0.11 + idx*0.07}s`);
+        let badgeHtml = "";
+        if(p.badges && p.badges.length) {
+          badgeHtml = `<div class="product-badges">${p.badges.map(b=>{
+            if(b=="sale") return `<span class="badge sale">SALE</span>`;
+            if(b=="new") return `<span class="badge new">NEW</span>`;
+            return `<span class="badge">${b}</span>`;
+          }).join('')}</div>`;
+        }
+        card.innerHTML = `
+          <img src="${p.img}" alt="${p.title}">
+          <div class="product-title">${p.title}</div>
+          <div class="product-desc">${p.desc}</div>
+          ${badgeHtml}
+          <div class="product-price">${p.price.toLocaleString()} ₽</div>
+          <button class="product-btn" data-id="${p.id}">В корзину</button>
+        `;
+        grid.appendChild(card);
+        setTimeout(()=>card.classList.add('show'),150+idx*80); 
+      });
+      grid.querySelectorAll('.product-btn').forEach(btn=>{
+        btn.onclick = ()=>addToCart(+btn.dataset.id);
+      });
+    }
+
+    document.querySelectorAll('.catalogs .chip').forEach(btn=>{
+      btn.onclick = function(){
+        document.querySelectorAll('.catalogs .chip').forEach(b=>b.classList.remove('active'));
+        this.classList.add('active');
+        renderProducts(this.dataset.cat);
+      }
+    });
+
+    let cart = [];
+    function addToCart(id) {
+      const item = products.find(p=>p.id==id);
+      if(!item) return;
+      const found = cart.find(c=>c.id==id);
+      if(found) found.qty += 1;
+      else cart.push({id, qty:1});
+      showCartPop();
+      updateCartCount();
+    }
+    function updateCartCount() {
+      const btn = document.getElementById('floatingCart');
+      let count = cart.reduce((sum,it)=>sum+it.qty,0);
+      if(count) btn.setAttribute('data-count',count);
+      else btn.removeAttribute('data-count');
+    }
+    function showCartPop() {
+      const pop = document.getElementById('cartPop');
+      pop.classList.add('show');
+      const ul = document.getElementById('cartList');
+      ul.innerHTML = "";
+      let total = 0;
+      cart.forEach(item=>{
+        const p = products.find(pp=>pp.id==item.id);
+        if(!p) return;
+        total += p.price * item.qty;
+        const li = document.createElement('li');
+        li.className = 'cart-item';
+        li.innerHTML = `<span class="cart-item-title">${p.title}</span>
+          <span class="cart-item-qty">x${item.qty}</span>
+          <span style="color:var(--main2);font-weight:600;">${(p.price*item.qty).toLocaleString()} ₽</span>
+          <button title="-" style="background:none;color:#ff5e68;font-weight:bold;font-size:1.25rem;border:none;cursor:pointer;" onclick="removeFromCart(${p.id})">&minus;</button>`;
+        ul.appendChild(li);
+      });
+      if(!cart.length) ul.innerHTML = `<li style="color:#7ea7ce;padding:16px;">Корзина пуста</li>`;
+      document.getElementById('cartTotal').textContent = total.toLocaleString() + " ₽";
+    }
+    function removeFromCart(id) {
+      const idx = cart.findIndex(c=>c.id==id);
+      if(idx>-1) {
+        if(cart[idx].qty>1) cart[idx].qty -= 1;
+        else cart.splice(idx,1);
+        showCartPop();
+        updateCartCount();
+      }
+    }
+    const cartBtn = document.getElementById('floatingCart');
+    cartBtn.onclick = ()=>{
+      showCartPop();
+      document.getElementById('cartPop').classList.add('show');
+    };
+    document.getElementById('cartPop').onclick = e=>{
+      if(e.target.classList.contains('cart-pop')) document.getElementById('cartPop').classList.remove('show');
+    };
+
+    renderProducts();
+
+  </script>
+</body>
+</html>
